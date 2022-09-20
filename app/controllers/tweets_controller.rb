@@ -29,12 +29,13 @@ class TweetsController < ApplicationController
   end
 
   def update
-    @tweet = Tweet.find_by(id: params[:id])
-    @tweet.title = params[:tweet][:title]
-    @tweet.body = params[:tweet][:body]
-    @tweet.image_url = params[:tweet][:image_url]
-    @tweet.save
-    redirect_to "/tweets"
+    @tweet = Tweet.find(params[:id])
+
+    if @tweet.update(tweet_params)
+      redirect_to @tweet
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
