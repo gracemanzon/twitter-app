@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all
-   render template: "tweets/index"
+    render template: "tweets/index"
   end
 
   def show
@@ -45,8 +45,8 @@ class TweetsController < ApplicationController
   end
 
   private
-    def tweet_params
-      params.require(:tweet).permit(:title, :body, :image_url)
-    end
 
+  def tweet_params
+    params.require(:tweet).permit(:title, :body, :image_url)
+  end
 end
