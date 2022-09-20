@@ -1,0 +1,10 @@
+<h1>All Tweets</h1>
+<% @tweets.each do |tweet| %>
+  <h2><%= tweet.title %></h2>
+  <p> <%= tweet.body %></p>
+  <%= link_to "Destroy tweet", tweet_path(tweet), data: {turbo_method: :delete} %>
+<% end %>
+
+<div>
+<%= link_to "New tweet", new_tweet_path %>
+</div>
