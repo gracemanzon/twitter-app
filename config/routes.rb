@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "tweets#index"
+  
   # users routes
   get "/signup" => "users#new"
   post "/users" => "users#create"
