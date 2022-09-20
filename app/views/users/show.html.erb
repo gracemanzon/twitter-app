@@ -1,0 +1,20 @@
+<h1>User Profile</h1>
+<h2>Name: <%= @user.name %></h2>
+<div>
+
+<% @user.tweets.each do |tweet| %>
+  <h4><%= tweet.title %></h4>
+  <p> <%= tweet.body %></p>
+<% end %>
+
+</div>
+
+
+
+
+<% if @user.id == current_user.id %>
+  <a href="/edit_user">Edit Profile</a>
+<% end %>
+
+
+<a href="/tweets">Back to all tweets</a>

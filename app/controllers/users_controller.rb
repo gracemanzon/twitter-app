@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, except: [:new, :create]
+  # before_action :current_user, except: [:new, :create]
 
   def new
     @user = User.new
@@ -34,5 +35,10 @@ class UsersController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]
     @user.save
     redirect_to "/"
+  end
+
+  def show
+    @user = User.find_by(id: params[:id])
+    render template: "users/show"
   end
 end
