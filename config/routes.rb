@@ -14,4 +14,7 @@ Rails.application.routes.draw do
 
   # tweets routes
   resources :tweets
+
+  # relationship routes
+  post "/follow" => "relationships#create"
 end

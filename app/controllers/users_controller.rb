@@ -41,4 +41,6 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     render template: "users/show"
   end
+
+
 end
