@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :leader_relationships, class_name: "Relationship", foreign_key: "follower_id"
   has_many :leaders, through: :leader_relationships, source: :leader
   has_many :tweets
+  has_many :likes
 end

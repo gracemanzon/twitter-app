@@ -17,4 +17,8 @@ Rails.application.routes.draw do
 
   # relationship routes
   post "/follow" => "relationships#create"
+
+  # likes routes
+  resources :likes, only: [:create, :destroy]
+
 end
