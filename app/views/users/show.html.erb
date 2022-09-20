@@ -15,6 +15,14 @@
   <a href="/edit_user">Edit Profile</a>
 <% end %>
 
+ <div>
+<%# <button onclick="window.location.href='/follow'"> Click to follow
+ </button> %>
+ <%= button_to '+', {:controller => "relationships", :action => "create", :leader_id=> @user.id} , :method=>:post  %>
+</div> 
+
+  <p> <%= @user.id %></p>
 
 
+  
 <a href="/tweets">Back to all tweets</a>
