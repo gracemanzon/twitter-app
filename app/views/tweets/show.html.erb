@@ -1,0 +1,12 @@
+<h1>Tweet Show</h1>
+<h2><%= @tweet.title %></h2>
+<p> <%= @tweet.body %></p>
+<div>
+<%= link_to "Edit tweet", edit_tweet_path(@tweet) %>
+</div>
+<div>
+<%= link_to "Destroy tweet", tweet_path(@tweet), data: {turbo_method: :delete} %>
+</div>
+<div>
+<a href="/tweets">Back to all tweets</a>
+</div>
