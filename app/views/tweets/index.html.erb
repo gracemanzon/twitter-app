@@ -1,4 +1,9 @@
 <h1>All Tweets</h1>
+
+<div>
+<button onclick="window.location.href='/logout'"> Logout </button>
+</div>
+
 <% @tweets.each do |tweet| %>
   <h2><%= tweet.title %></h2>
   <p> <%= tweet.body %></p>
@@ -11,3 +16,4 @@
 <div>
 <%= link_to "New tweet", new_tweet_path %>
 </div>
+
