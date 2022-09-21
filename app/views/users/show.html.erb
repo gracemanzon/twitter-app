@@ -16,13 +16,14 @@
 <% end %>
 
  <div>
-<%# <button onclick="window.location.href='/follow'"> Click to follow
- </button> %>
- <%= button_to '+', {:controller => "relationships", :action => "create", :leader_id=> @user.id} , :method=>:post  %>
+ <%= button_to 'Click to Follow', {:controller => "relationships", :action => "create", :leader_id=> @user.id} , :method=>:post  %>
 </div> 
 
-  <p> <%= @user.id %></p>
+</button> 
+<%= button_to 'Click to Unfollow', {:controller => "relationships", :action => "destroy", :relationship_id=> @user.leader_relationships[index].id} , :method=>:get  %>
+</div> 
 
+#Line 23 does not work, I am trying to access the Relationship id to destroy that relationship instance using the new :relationship_id variable however I am only able to access relationships.ids (meaning every user that current user is following rather than just the one whose page I'm on). Not sure if I need to access the leader_id instead or if this could work.
 
   
 <a href="/tweets">Back to all tweets</a>
