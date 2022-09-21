@@ -29,11 +29,10 @@
 <% if @user.followers.count == 1 %>
 <%= @user.followers.count %> Follower
 <% else %>
-<% @user.followers.count %> Followers
+<%= @user.followers.count %> Followers
 <% end %>
 </div>
 
-  <p> <%= @user.id %></p>
 
 
   
