@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post "/users" => "users#create"
   get "/edit_user" => "users#edit"
   get "/profile/:id" => "users#show"
+  get "posts" => "users#index"
 
   # sessions routes
   get "/login" => "sessions#new"
