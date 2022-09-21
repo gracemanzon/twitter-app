@@ -5,6 +5,17 @@
 <% @user.tweets.each do |tweet| %>
   <h4><%= tweet.title %></h4>
   <p> <%= tweet.body %></p>
+    <% if tweet.user_id == current_user.id %>
+
+    <%= link_to "Delete tweet", tweet_path(tweet), data: {turbo_method: :delete} %>
+    <div>
+    <%= link_to "Edit tweet", edit_tweet_path(tweet) %>
+    </div>
+    <% end %>
+
+<div>
+<%= link_to "New tweet", new_tweet_path %>
+</div>
 <% end %>
 </div>
 
