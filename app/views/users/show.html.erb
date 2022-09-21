@@ -16,9 +16,8 @@
 <% end %>
 
  <div>
-<%= <button onclick="window.location.href='/follow'"> Click to follow
- </button> %>
- <%= button_to '+', {:controller => "relationships", :action => "create", :leader_id=> @user.id} , :method=>:post  %>
+
+ <%= button_to 'Click to Follow', {:controller => "relationships", :action => "create", :leader_id=> @user.id} , :method=>:post  %>
 </div> 
 
 <div>
