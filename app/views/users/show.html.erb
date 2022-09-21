@@ -21,8 +21,17 @@
  <%= button_to '+', {:controller => "relationships", :action => "create", :leader_id=> @user.id} , :method=>:post  %>
 </div> 
 
+<div>
+<% if @user.followers.count == 1 %>
+<%= @user.followers.count %> Follower
+<% else %>
+<% @user.followers.count %> Followers
+<% end %>
+</div>
+
   <p> <%= @user.id %></p>
 
 
   
 <a href="/tweets">Back to all tweets</a>
+
