@@ -15,10 +15,16 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = Tweet.new( 
+      # tweet_params
+      title: params[:tweet][:title],
+      body: params[:tweet][:body],
+      image_url: params[:tweet][:image_url],
+      user_id: current_user.id
+    )
 
     if @tweet.save
-      redirect_to @tweet
+      redirect_to "/"
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +39,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
 
     if @tweet.update(tweet_params)
-      redirect_to @tweet
+      redirect_to "/"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -48,6 +54,7 @@ class TweetsController < ApplicationController
   private
 
   def tweet_params
+    params[:tweet][:user_id] = current_user.id
     params.require(:tweet).permit(:title, :body, :image_url)
   end
 end
