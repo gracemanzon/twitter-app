@@ -7,7 +7,7 @@
 <div>
 <%= link_to "Destroy tweet", tweet_path(@tweet), data: {turbo_method: :delete} %>
 </div>
-<div>
+
 <a href="/tweets">Back to all tweets</a>
 
 <div>
@@ -18,6 +18,7 @@
 <% end %>
 </div>
 
+<div>
 <% like = current_user.likes.find_by(tweet: @tweet)%>
 <% if current_user.likes.find_by(tweet: @tweet).nil?%>
 <%= button_to "Like", likes_path, params: {like: {tweet_id: @tweet.id}}, method: :tweet %>
