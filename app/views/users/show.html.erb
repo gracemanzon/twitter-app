@@ -16,10 +16,14 @@
 <% end %>
 
  <div>
-<%# <button onclick="window.location.href='/follow'"> Click to follow
+<%= <button onclick="window.location.href='/follow'"> Click to follow
  </button> %>
  <%= button_to '+', {:controller => "relationships", :action => "create", :leader_id=> @user.id} , :method=>:post  %>
 </div> 
+
+<div>
+<%= button_to 'Click to Unfollow', {:controller => "relationships", :action => "destroy", :leader_id=> @user.id}, :method=>:delete  %>
+</div>
 
 <div>
 <% if @user.followers.count == 1 %>

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   # relationship routes
   post "/follow" => "relationships#create"
+  delete "/unfollow" => "relationships#destroy"
 
   # likes routes
   resources :likes, only: [:create, :destroy]
