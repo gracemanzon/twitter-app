@@ -28,7 +28,7 @@
 
  
 <div>
-<% if @user.following?(@user.id) == false %>
+<% if current_user.following?(@user.id) == false %>
  <%= button_to 'Click to Follow', {:controller => "relationships", :action => "create", :leader_id=> @user.id} , :method=>:post  %>
 </div> 
 <% else %>
