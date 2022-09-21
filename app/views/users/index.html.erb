@@ -1,0 +1,8 @@
+<h1> Following Posts</h2>
+<% current_user.leaders.each do |currentuser| %>
+<% currentuser.tweets.each do |tweet| %>
+<h2><%= tweet.title %></h2>
+<p><%= tweet.body %></p>
+<h2><%= tweet.image_url %></h2>
+<% end %>
+<% end %>

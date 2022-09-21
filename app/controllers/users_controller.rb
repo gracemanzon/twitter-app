@@ -42,5 +42,9 @@ class UsersController < ApplicationController
     render template: "users/show"
   end
 
+  def index
+  @user = User.all
+  end
+
 
 end
