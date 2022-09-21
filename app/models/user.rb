@@ -7,4 +7,13 @@ class User < ApplicationRecord
   has_many :leaders, through: :leader_relationships, source: :leader
   has_many :tweets
   has_many :likes
+
+  def following?(leader_id)
+    relationships = Relationship.where(follower_id: self.id, leader_id: leader_id)
+    if relationships.length > 0
+      return true
+    else
+      return false
+    end
+  end
 end
