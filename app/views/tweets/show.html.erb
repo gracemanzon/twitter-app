@@ -11,7 +11,11 @@
 <a href="/tweets">Back to all tweets</a>
 
 <div>
-<%= @tweet.likes.count %> Likes
+<% if @tweet.likes.count == 1 %>
+<%= @tweet.likes.count %> Like
+<% else %>
+<% @tweet.likes.count %> Likes
+<% end %>
 </div>
 
 <% like = current_user.likes.find_by(tweet: @tweet)%>
