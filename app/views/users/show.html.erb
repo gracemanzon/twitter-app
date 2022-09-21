@@ -15,13 +15,15 @@
   <a href="/edit_user">Edit Profile</a>
 <% end %>
 
- <div>
-
+ 
+<div>
+<% if @user.following?(@user.id) == false %>
  <%= button_to 'Click to Follow', {:controller => "relationships", :action => "create", :leader_id=> @user.id} , :method=>:post  %>
 </div> 
-
+<% else %>
 <div>
 <%= button_to 'Click to Unfollow', {:controller => "relationships", :action => "destroy", :leader_id=> @user.id}, :method=>:delete  %>
+<% end %>
 </div>
 
 
