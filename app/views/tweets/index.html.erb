@@ -5,8 +5,8 @@
 </div>
 
 <% @tweets.each do |tweet| %>
-  <h2>Author: <%= tweet.user.name %></h2>
-  <p> <%= tweet.body %></p>
+  <h5>Author: <a href="profile/<%= tweet.user.id%>"><%= tweet.user.name %></a></h5>
+  <p>"<%= tweet.body %>"</p>
   <% like = current_user.likes.find_by(tweet: tweet)%>
 <% if current_user.likes.find_by(tweet: tweet).nil?%>
 <%= button_to "Like", likes_path, params: {like: {tweet_id: tweet.id}}, method: :tweet %>
@@ -25,6 +25,4 @@
 <div>
 <%= link_to "New tweet", new_tweet_path %>
 </div>
-
-
 
