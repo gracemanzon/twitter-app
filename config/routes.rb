@@ -17,5 +17,5 @@ Rails.application.routes.draw do
 
   # relationship routes
   post "/follow" => "relationships#create"
-  get "/unfollow" => "relationships#destroy"
+  delete "/unfollow" => "relationships#destroy"
 end
