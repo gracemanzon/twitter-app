@@ -22,6 +22,10 @@
 </div> 
 
 <div>
+<%= button_to 'Click to Unfollow', {:controller => "relationships", :action => "destroy", :leader_id=> @user.id}, :method=>:delete  %>
+</div>
+
+<div>
 <% if @user.followers.count == 1 %>
 <%= @user.followers.count %> Follower
 <% else %>
