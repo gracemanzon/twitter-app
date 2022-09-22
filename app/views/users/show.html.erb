@@ -1,44 +1,16 @@
-<h1>User Profile</h1>
-<h2>Name: <%= @user.name %></h2>
-
-<div>
-<% @user.tweets.each do |tweet| %>
-  <h4><%= tweet.title %></h4>
-  <p> <%= tweet.body %></p>
-    <% if tweet.user_id == current_user.id %>
-
-    <%= link_to "Delete tweet", tweet_path(tweet), data: {turbo_method: :delete} %>
-    <div>
-    <%= link_to "Edit tweet", edit_tweet_path(tweet) %>
-    </div>
-    <% end %>
-<% end %>
-<div>
-<%= link_to "New tweet", new_tweet_path %>
-</div>
-
-</div>
-
-
-
-
+<h2>navbar ------ </h2>
 <% if @user.id == current_user.id %>
  <a href= "/users/<%=@user.id%>/edit"> Edit Profile </a>
 <% end %>
 
- 
-<div>
-<% if current_user.following?(@user.id) == false %>
- <%= button_to 'Click to Follow', {:controller => "relationships", :action => "create", :leader_id=> @user.id} , :method=>:post  %>
-</div> 
-<% else %>
-<div>
-<%= button_to 'Click to Unfollow', {:controller => "relationships", :action => "destroy", :leader_id=> @user.id}, :method=>:delete  %>
-<% end %>
-</div>
+<a href="/tweets">Back to all tweets</a>
 
 
-<div>
+<div class="card" style="width: 50rem; text-align: center; margin-left: 22%; background-color: #eeeeee;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @user.name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+    <div>
 <% if @user.followers.count == 1 %>
 <%= @user.followers.count %> Follower
 <% else %>
@@ -46,8 +18,75 @@
 <% end %>
 </div>
 
+<div>
+<% if current_user.following?(@user.id) == false %>
+ <%= button_to 'Follow', {:controller => "relationships", :action => "create", :leader_id=> @user.id}, :method=>:post  %>
+</div> 
+<% else %>
+<div>
+<%= button_to 'Unfollow', {:controller => "relationships", :action => "destroy", :leader_id=> @user.id}, :method=>:delete  %>
+<% end %>
+</div>
+
+    </h6>
+    <p class="card-text"> <div>
+    <% @user.tweets.each do |tweet| %>
+
+    <div class="card" style="width: 18rem; text-align: left; margin-top: 50px; margin-left: 32%;">
+    <img src="<%= tweet.image_url %>" class="card-img-top" alt="..." >
+    <div class="card-body">
+    <h5 class="card-title"><%= tweet.title %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><div>
+<% if tweet.likes.count == 1 %>
+<%= tweet.likes.count %> Like
+<% else %>
+<% tweet.likes.count %> Likes
+<% end %>
+</div>
+
+<div>
+<% like = current_user.likes.find_by(tweet: tweet) if !current_user.nil? %>
+<% if like.nil? %>
+  <form action="/likes" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="like[tweet_id]" value="<%= tweet.id %>">
+    <input type="hidden" name="like[tweet_type]" value="<%= tweet.class.to_s %>">
+    <input type="submit" value="Like">
+  </form>
+<% else %>
+  <form action="<%= like_path(like) %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Unlike">
+  </form>
+<% end %>
+</div></h6>
+    <p class="card-text"><%= tweet.body %></p>
+    
+      <% if tweet.user_id == current_user.id %>
+    <a href="<%= edit_tweet_path(tweet)%>" class="btn btn-primary">Edit</a>
+        <%= link_to "Delete", tweet_path(tweet), data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    }, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
 
 
-  
-<a href="/tweets">Back to all tweets</a>
+<% end %>
+<div> </p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 

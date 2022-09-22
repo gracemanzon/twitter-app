@@ -5,19 +5,19 @@ class LikesController < ApplicationController
       flash[:notice] = @like.errors.full_messages
       # render json: @like.errors.full_message
     end
-    redirect_to @like.tweet
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
     @like = current_user.likes.find(params[:id])
     tweet = @like.tweet
     @like.destroy
-    redirect_to tweet
+    redirect_back(fallback_location: root_path)
   end
 
   private
 
   def like_params
-  params.require(:like).permit(:tweet_id)
+    params.require(:like).permit(:tweet_id)
   end
 end
