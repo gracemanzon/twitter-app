@@ -12,25 +12,21 @@ Relationship.create(follower_id: 3, leader_id: 1)
 
 Tweet.create(
   user_id: 1,
-  title: "Robyn",
+  title: "Title",
   body: "Hello World, it's Robyn!",
 )
 
-Tweet.create(
-  user_id: 1,
-  title: "Robyn",
-  body: "Hello World, it's Robyn!",
-)
+
 
 Tweet.create(
   user_id: 2,
-  title: "Marcus",
+  title: "Title",
   body: "Hello World, it's Marcus!",
 )
 
 Tweet.create(
-  user_id: 1,
-  title: "Grace",
+  user_id: 3,
+  title: "Title",
   body: "Hello World, it's Grace!",
 )
 
