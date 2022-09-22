@@ -18,45 +18,51 @@
       </mdb-nav-item>
       <mdb-dropdown tag="li" class="nav-item avatar" anchorClass="p-0">
         <mdb-dropdown-toggle tag="a" navLink color="stylish" slot="toggle" waves-fixed>
-                <a href="profile/<%= current_user.id%>" class="nav-item nav-link"><%= current_user.name %></a>
-          <img
-            src="<%= current_user.image_url%>"
-            class="rounded-circle z-depth-0"
-            alt="avatar image"
-            height="70"
-          />
-                          <% if @user.id == current_user.id %>
- <a href= "/users/<%=@user.id%>/edit" class="nav-item nav-link"> Edit Account </a>
-<% end %>
-                <a href="/logout" class="nav-item nav-link">Logout</a>
+                <a href="/profile/<%= current_user.id%>" class="nav-item nav-link" style="text-align: right;"><%= current_user.name %></a>
+                <img
+                src="<%= current_user.image_url%>"
+                class="z-depth-0"
+                style="width: 100px; height: 100px; border-radius: 50%;"
+                alt="avatar image"
+                height="70"
+                />
+                <% if @user.id == current_user.id %>
+                <a href= "/users/<%=@user.id%>/edit" class="nav-item nav-link" style="text-align: right;"> Edit Account </a>
+                <% end %>
+                <a href="/logout" class="nav-item nav-link" style="text-align: right;">Logout</a>
             </div>
         </div>
     </div>
 </nav>
 
-
-
-<div class="card" style="width: 30rem; margin-left: 35%; margin-top: 50px; text-align: center;">
+<div class="card" style="width: 30rem; margin-left: auto;
+    margin-right: auto; margin-top: 30px; text-align: center;">
   <div class="card-body">
-    <h1 class="card-title">Edit Your Account</h1>
+    <h1 class="card-title" style="margin-bottom: 60px;">Edit Account</h1>
 <div>
+
 <%= form_with model: @user do |form| %>
-  <div>
+  <div style="margin-top: 15px;">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
-  <div>
+
+  <div style="margin-top: 15px;">
     <%= form.label :email %>
     <%= form.text_field :email %>
   </div>
-  <div>
+
+   <div style="margin-top: 15px;">
   <%= form.label :image_url %>
   <%= form.text_field :image_url %>
-</div>
- 
-  <div>
-    <%= form.submit %>
   </div>
-<% end%>
+
+  <div style="margin-top: 50px; margin-bottom: 40px;">
+    <%= form.submit "Update Account", class: "btn btn-outline-success" %>
+  </div>
+
+  <% end %>
+</div>
+
   </div>
 </div>

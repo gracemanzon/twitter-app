@@ -18,17 +18,18 @@
       </mdb-nav-item>
       <mdb-dropdown tag="li" class="nav-item avatar" anchorClass="p-0">
         <mdb-dropdown-toggle tag="a" navLink color="stylish" slot="toggle" waves-fixed>
-                <a href="profile/<%= current_user.id%>" class="nav-item nav-link"><%= current_user.name %></a>
-          <img
-            src="<%= current_user.image_url%>"
-            class="rounded-circle z-depth-0"
-            alt="avatar image"
-            height="70"
-          />
-                          <% if @user.id == current_user.id %>
- <a href= "/users/<%=@user.id%>/edit" class="nav-item nav-link"> Edit Account </a>
-<% end %>
-                <a href="/logout" class="nav-item nav-link">Logout</a>
+                <a href="/profile/<%= current_user.id%>" class="nav-item nav-link" style="text-align: right;"><%= current_user.name %></a>
+                <img
+                src="<%= current_user.image_url%>"
+                class="z-depth-0"
+                style="width: 100px; height: 100px; border-radius: 50%;"
+                alt="avatar image"
+                height="70"
+                />
+                <% if @user.id == current_user.id %>
+                <a href= "/users/<%=@user.id%>/edit" class="nav-item nav-link" style="text-align: right;"> Edit Account </a>
+                <% end %>
+                <a href="/logout" class="nav-item nav-link" style="text-align: right;">Logout</a>
 
             </div>
         </div>
@@ -36,10 +37,10 @@
 </nav>
 
 
-<div class="card" style="width: 50rem; text-align: center; margin-left: 22%; background-color: #eeeeee;">
+<div class="card" style="width: 80rem; margin-left: auto; margin-right: auto; background-color: #eeeeee; text-align: center; padding-top: 30px;">
 <div>
 <img src="<%= @user.image_url%>"
-            class="rounded-circle z-depth-0"
+            style="width: 100px; height: 100px; border-radius: 50%;"
             height="70"
             align="center"
           >
@@ -69,7 +70,8 @@
     <p class="card-text"> <div>
     <% @user.tweets.each do |tweet| %>
 
-    <div class="card" style="width: 18rem; text-align: left; margin-top: 50px; margin-left: 32%;">
+    <div class="card" style="text-align: left; margin-top: 50px; margin-left: auto;
+    margin-right: auto; width: 40em">
     <img src="<%= tweet.image_url %>" class="card-img-top" alt="..." >
     <div class="card-body">
     <h5 class="card-title"><%= tweet.title %></h5>
@@ -88,24 +90,24 @@
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="like[tweet_id]" value="<%= tweet.id %>">
     <input type="hidden" name="like[tweet_type]" value="<%= tweet.class.to_s %>">
-    <input type="submit" value="Like">
+    <input type="submit" value="Like" class="btn btn-outline-success">
   </form>
 <% else %>
   <form action="<%= like_path(like) %>" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Unlike">
+    <input type="submit" value="Unlike" class="btn btn-outline-success">
   </form>
 <% end %>
 </div></h6>
     <p class="card-text"><%= tweet.body %></p>
     
       <% if tweet.user_id == current_user.id %>
-    <a href="<%= edit_tweet_path(tweet)%>" class="btn btn-primary">Edit</a>
+    <a href="<%= edit_tweet_path(tweet)%>" class="btn btn-outline-success">Edit</a>
         <%= link_to "Delete", tweet_path(tweet), data: {
       turbo_method: :delete,
       turbo_confirm: "Are you sure?"
-    }, class: "btn btn-primary" %>
+    }, class: "btn btn-outline-success" %>
     <% end %>
   </div>
 </div>
