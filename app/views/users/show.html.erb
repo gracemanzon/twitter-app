@@ -1,9 +1,39 @@
-<h2>navbar ------ </h2>
-<% if @user.id == current_user.id %>
- <a href= "/users/<%=@user.id%>/edit"> Edit Profile </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand">Twitter</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="/tweets" class="nav-item nav-link active">Home</a>
+                <a href="/posts" class="nav-item nav-link">Following</a>
+                <a href="/tweets/new" class="nav-item nav-link">Tweet</a>
+            </div>
+            
+            <div class="navbar-nav ms-auto">
+            <mdb-navbar expand="large" dark color="purple">
+  <mdb-navbar-toggler>
+        <mdb-icon icon="envelope" />
+      </mdb-nav-item>
+      <mdb-dropdown tag="li" class="nav-item avatar" anchorClass="p-0">
+        <mdb-dropdown-toggle tag="a" navLink color="stylish" slot="toggle" waves-fixed>
+                <a href="profile/<%= current_user.id%>" class="nav-item nav-link"><%= current_user.name %></a>
+          <img
+            src="<%= current_user.image_url%>"
+            class="rounded-circle z-depth-0"
+            alt="avatar image"
+            height="70"
+          />
+                          <% if @user.id == current_user.id %>
+ <a href= "/users/<%=@user.id%>/edit" class="nav-item nav-link"> Edit Account </a>
 <% end %>
+                <a href="/logout" class="nav-item nav-link">Logout</a>
 
-<a href="/tweets">Back to all tweets</a>
+            </div>
+        </div>
+    </div>
+</nav>
 
 
 <div class="card" style="width: 50rem; text-align: center; margin-left: 22%; background-color: #eeeeee;">
