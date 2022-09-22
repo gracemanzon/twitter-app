@@ -14,22 +14,19 @@ Tweet.create(
   user_id: 1,
   title: "Robyn",
   body: "Hello World, it's Robyn!",
-  image_url: "https://thumbs.dreamstime.com/b/bee-flower-27533578.jpg"
+  image_url: "https://thumbs.dreamstime.com/b/bee-flower-27533578.jpg",
 )
-
 
 Tweet.create(
   user_id: 2,
   title: "Marcus",
   body: "Hello World, it's Marcus!",
-  image_url: "https://thumbs.dreamstime.com/b/bee-collecting-pollen-2250640.jpg"
+  image_url: "https://thumbs.dreamstime.com/b/bee-collecting-pollen-2250640.jpg",
 )
 
 Tweet.create(
   user_id: 3,
   title: "Grace",
   body: "Hello World, it's Grace!",
-  image_url: "https://thumbs.dreamstime.com/b/landscape-nature-mountan-alps-rainbow-76824355.jpg"
+  image_url: "https://thumbs.dreamstime.com/b/landscape-nature-mountan-alps-rainbow-76824355.jpg",
 )
-
-

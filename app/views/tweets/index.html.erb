@@ -18,6 +18,7 @@
       </mdb-nav-item>
       <mdb-dropdown tag="li" class="nav-item avatar" anchorClass="p-0">
         <mdb-dropdown-toggle tag="a" navLink color="stylish" slot="toggle" waves-fixed>
+                <a href="profile/<%= current_user.id%>" class="nav-item nav-link"><%= current_user.name %></a>
           <img
             src="<%= current_user.image_url%>"
             class="rounded-circle z-depth-0"
@@ -62,13 +63,22 @@
                 </div>
               </div>
               <div>
-<% like = current_user.likes.find_by(tweet: @tweet) if !current_user.nil? %>
+<div>
+<% if tweet.likes.count == 1 %>
+<%= tweet.likes.count %> Like
+<% else %>
+<% tweet.likes.count %> Likes
+<% end %>
+</div>
+
+<div>
+<% like = current_user.likes.find_by(tweet: tweet) if !current_user.nil? %>
 <% if like.nil? %>
   <form action="/likes" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="like[tweet_id]" value="<%= tweet.id %>">
     <input type="hidden" name="like[tweet_type]" value="<%= tweet.class.to_s %>">
-    <input type="submit" value="Like" button type="button" class="btn btn-outline-success">
+    <input type="submit" value="Like">
   </form>
 <% else %>
   <form action="<%= like_path(like) %>" method="post">
@@ -77,6 +87,7 @@
     <input type="submit" value="Unlike">
   </form>
 <% end %>
+</div>
 </div>
 
     <% if tweet.user_id == current_user.id %>
