@@ -2,10 +2,14 @@ Rails.application.routes.draw do
   root "tweets#index"
 
   # users routes
+  # resources :users
   get "/signup" => "users#new"
   post "/users" => "users#create"
-  get "/edit_user" => "users#edit"
+  get "/users/:id/edit" => "users#edit"
+  patch "/users/:id" => "users#update"
   get "/profile/:id" => "users#show"
+  get "/users/:id", to: "users#show", as: "user"
+  
   get "posts" => "users#index"
 
   # sessions routes

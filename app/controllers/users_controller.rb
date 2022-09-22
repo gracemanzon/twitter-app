@@ -28,13 +28,18 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = Photo.find_by(id: params[:id])
-    @user.name = params[:user][:name]
-    @user.email = params[:user][:email]
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirmation]
-    @user.save
-    redirect_to "/"
+    @user = User.find_by(id: params[:id]) 
+    @user.name = params[:user][:name] || @user.name
+    @user.email = params[:user][:email] || @user.email
+    @user.image_url = params[:user][:image_url] || @user.image_url
+
+    # @user.password = params[:password] || @user.password
+    # @user.password_confirmation = params[:password_confirmation] || @user.password
+    if @user.save
+      redirect_to "/"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def show
