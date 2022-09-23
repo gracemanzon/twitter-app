@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :leaders, through: :leader_relationships, source: :leader
   has_many :tweets
   has_many :likes
+  has_many :comments
 
   def following?(leader_id)
     relationships = Relationship.where(follower_id: self.id, leader_id: leader_id)
