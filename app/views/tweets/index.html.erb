@@ -9,6 +9,7 @@
                 <a href="/tweets" class="nav-item nav-link active">Home</a>
                 <a href="/posts" class="nav-item nav-link">Following</a>
                 <a href="/tweets/new" class="nav-item nav-link">Tweet</a>
+                <a href="/logout" class="nav-item nav-link" style="text-align: right;">Logout</a>
             </div>
             
             <div class="navbar-nav ms-auto">
@@ -18,16 +19,15 @@
       </mdb-nav-item>
       <mdb-dropdown tag="li" class="nav-item avatar" anchorClass="p-0">
         <mdb-dropdown-toggle tag="a" navLink color="stylish" slot="toggle" waves-fixed>
-                <a href="/profile/<%= current_user.id%>" class="nav-item nav-link" style="text-align: right;"><%= current_user.name %></a>
-                <img
+                <a href="/profile/<%= current_user.id%>"><img
                 src="<%= current_user.image_url%>"
                 class="z-depth-0"
                 style="width: 100px; height: 100px; border-radius: 50%;"
                 alt="avatar image"
                 height="70"
-                />
+                /></a>
 
-                <a href="/logout" class="nav-item nav-link" style="text-align: right;">Logout</a>
+                
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
 
 <div class="container-fluid">
 <% @tweets.each do |tweet| %>
-<li class="list-group-item" style="margin: 50px 100px;">
+<li class="list-group-item" style="margin: 50px 200px;">
               <div class="media">
                 <div class="media-left">
                     <i></i>
@@ -52,19 +52,20 @@
           </div>
           <div>
           <h5 align="Right" style="padding-right: 20px;"> <a href="profile/<%= tweet.user.id%>"><%= tweet.user.name %></a></h5>
-                     </div>
-          <div align="center" style="text-align: center; margin-left:auto; margin-right: auto;">
+          </div>
+          <div style="text-align: left; margin-left:auto; margin-right: auto; width: 600px;">
                   <h4 class="media-heading"></h4>
-                  <h5>
-                    <%= tweet.title %>
-                  </h5>
                   <div>
+                  <h3>
+                    <%= tweet.title %>
+                  </h3>
+                  <div style="margin-bottom: 30px;">
                     <%= tweet.body %>
                   </div>
                   <div>
-                    <img src="<%= tweet.image_url %>" alt="...">
+                    <img src="<%= tweet.image_url %>" alt="..." style="width: 600px;">
                   </div>
-                  <div>
+                  <div style="padding-top: 30px;">
                       <div style="font-size: 20px;">
                       <% if tweet.likes.count == 1 %>
                       <%= tweet.likes.count %> Like
@@ -72,7 +73,7 @@
                       <% tweet.likes.count %> Likes
                       <% end %>
                   </div>
-
+                  </div>
                   <div>
                     <% like = current_user.likes.find_by(tweet: tweet) if !current_user.nil? %>
                     <% if like.nil? %>
@@ -89,7 +90,7 @@
                         <input type="submit" value="Unlike" class="btn btn-outline-success">
                       </form>
                     <% end %>
-                    <div style="margin: 20px;">
+                    <div style="margin-top: 20px;">
                         <% if tweet.user_id == current_user.id %>
                         <a href="<%= edit_tweet_path(tweet)%>" class="btn btn-outline-success">Edit</a>
                         <%= link_to "Delete", tweet_path(tweet), data: {
