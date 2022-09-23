@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(
       name: params[:user][:name],
       email: params[:user][:email],
+      image_url: params[:user][:image_url],
       password: params[:user][:password],
       password_confirmation: params[:user][:password_confirmation],
     )
