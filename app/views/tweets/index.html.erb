@@ -36,7 +36,13 @@
 <h1>Tweet Feed</h1>
 <div class="container-fluid">
 <% @tweets.each do |tweet| %>
-<li class="list-group-item" style="margin: 50px 200px;">
+<li class="list-group-item" style="margin: 50px 200px;  
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 1);">
               <div class="media">
                 <div class="media-left">
                     <i></i>
@@ -64,7 +70,7 @@
                     <%= tweet.body %>
                   </div>
                   <div>
-                    <img src="<%= tweet.image_url %>" alt="..." style="width: 600px;">
+                    <img src="<%= tweet.image_url %>"  style="width: 600px;">
                   </div>
                   <div style="padding-top: 30px;">
                       <div style="font-size: 20px;">
@@ -109,18 +115,6 @@
 </div>
 
 
-<%# <div class="row">
-<link rel="stylesheet" href="index.css">
-    <div class="col-md-6 col-xs-12 col-md-offset-3">
-      <div class="panel">
-        <div class="panel-heading">
-          <h3 class="panel-title">Twitter Feed</h3>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <textarea class="form-control" placeholder="Enter here for tweet..." rows="3"></textarea>
-          </div>
-          <a href="javascript:void(0)" class="btn btn-info btn-sm pull-right waves-effect waves-light">Tweet</a> %>
 
 
 
