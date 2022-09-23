@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user
+
   def index
     @tweets = Tweet.all
     render template: "tweets/index"
@@ -15,12 +16,12 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new( 
+    @tweet = Tweet.new(
       # tweet_params
       title: params[:tweet][:title],
       body: params[:tweet][:body],
       image_url: params[:tweet][:image_url],
-      user_id: current_user.id
+      user_id: current_user.id,
     )
 
     if @tweet.save
