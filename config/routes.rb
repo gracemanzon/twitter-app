@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   delete "/unfollow" => "relationships#destroy"
 
   # likes routes
-  resources :likes, only: [:create, :destroy]
+  resources :likes
 
   # comments routes
   resources :comments

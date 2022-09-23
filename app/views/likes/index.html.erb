@@ -1,41 +1,41 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a href="#" class="navbar-brand">Twitter</a>
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav">
-                <a href="/tweets" class="nav-item nav-link active">Home</a>
-                <a href="/posts" class="nav-item nav-link">Following</a>
-                <a href="/tweets/new" class="nav-item nav-link">Tweet</a>
-                <a href="/likes" class="nav-item nav-link">Liked Posts</a>
-                <a href="/logout" class="nav-item nav-link" style="text-align: right;">Logout</a>
-            </div>
-            
-            <div class="navbar-nav ms-auto">
-            <mdb-navbar expand="large" dark color="purple">
-  <mdb-navbar-toggler>
-        <mdb-icon icon="envelope" />
-      </mdb-nav-item>
-      <mdb-dropdown tag="li" class="nav-item avatar" anchorClass="p-0">
-        <mdb-dropdown-toggle tag="a" navLink color="stylish" slot="toggle" waves-fixed>
-                <a href="/profile/<%= current_user.id%>"><img
-                src="<%= current_user.image_url%>"
-                class="z-depth-0"
-                style="width: 100px; height: 100px; border-radius: 50%;"
-                alt="avatar image"
-                height="70"
-                /></a>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <div class="container-fluid">
+         <a href="#" class="navbar-brand">Twitter</a>
+         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+             <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarCollapse">
+             <div class="navbar-nav">
+                 <a href="/tweets" class="nav-item nav-link active">Home</a>
+                 <a href="/posts" class="nav-item nav-link">Following</a>
+                 <a href="/tweets/new" class="nav-item nav-link">Tweet</a>
+                 <a href="/likes" class="nav-item nav-link">Liked Posts</a>
+             </div>
 
-                
-            </div>
-        </div>
-    </div>
-</nav>
+             <div class="navbar-nav ms-auto">
+             <mdb-navbar expand="large" dark color="purple">
+   <mdb-navbar-toggler>
+         <mdb-icon icon="envelope" />
+       </mdb-nav-item>
+       <mdb-dropdown tag="li" class="nav-item avatar" anchorClass="p-0">
+         <mdb-dropdown-toggle tag="a" navLink color="stylish" slot="toggle" waves-fixed>
+                 <a href="profile/<%= current_user.id%>" class="nav-item nav-link"><%= current_user.name %></a>
+           <img
+             src="<%= current_user.image_url%>"
+             class="rounded-circle z-depth-0"
+             alt="avatar image"
+             height="70"
+           />
+                 <a href="/logout" class="nav-item nav-link">Logout</a>
+             </div>
+         </div>
+     </div>
+ </nav>
+<h1 align="center"> Liked Tweets </h1>
+
 
 <div class="container-fluid">
-<% @tweets.each do |tweet| %>
+<% current_user.likes.each do |tweet| %>
 <li class="list-group-item" style="margin: 50px 200px;">
               <div class="media">
                 <div class="media-left">
@@ -45,33 +45,33 @@
                 <div class="media-body">
                   <%# <small class="text-muted pull-right">Just now</small> %>
                     <div style="height: 100px;">
-<img src="<%= tweet.user.image_url%>"
+<img src="<%= tweet.tweet.user.image_url%>"
             style="width: 100px; height: 100px; border-radius: 50%;"
             height="70"
             align="right"
           >
           </div>
           <div>
-          <h5 align="Right" style="padding-right: 20px;"> <a href="profile/<%= tweet.user.id%>"><%= tweet.user.name %></a></h5>
+          <h5 align="Right" style="padding-right: 20px;"> <a href="profile/<%= tweet.tweet.user.id %>"><%= tweet.tweet.user.name %></a></h5>
           </div>
           <div style="text-align: left; margin-left:auto; margin-right: auto; width: 600px;">
                   <h4 class="media-heading"></h4>
                   <div>
                   <h3>
-                    <%= tweet.title %>
+                    <%= tweet.tweet.title %>
                   </h3>
                   <div style="margin-bottom: 30px;">
-                    <%= tweet.body %>
+                    <%= tweet.tweet.body %>
                   </div>
                   <div>
-                    <img src="<%= tweet.image_url %>" alt="..." style="width: 600px;">
+                    <img src="<%= tweet.tweet.image_url %>" alt="..." style="width: 600px;">
                   </div>
                   <div style="padding-top: 30px;">
                       <div style="font-size: 20px;">
-                      <% if tweet.likes.count == 1 %>
-                      <%= tweet.likes.count %> Like
+                      <% if tweet.tweet.likes.count == 1 %>
+                      <%= tweet.tweet.likes.count %> Like
                       <% else %>
-                      <% tweet.likes.count %> Likes
+                      <% tweet.tweet.likes.count %> Likes
                       <% end %>
                   </div>
                   </div>
@@ -92,7 +92,7 @@
                       </form>
                     <% end %>
                     <div style="margin-top: 20px;">
-                        <% if tweet.user_id == current_user.id %>
+                        <% if tweet.tweet.user_id == current_user.id %>
                         <a href="<%= edit_tweet_path(tweet)%>" class="btn btn-outline-success">Edit</a>
                         <%= link_to "Delete", tweet_path(tweet), data: {
                           turbo_method: :delete,
@@ -107,22 +107,3 @@
 
 <% end %>
 </div>
-
-
-<%# <div class="row">
-<link rel="stylesheet" href="index.css">
-    <div class="col-md-6 col-xs-12 col-md-offset-3">
-      <div class="panel">
-        <div class="panel-heading">
-          <h3 class="panel-title">Twitter Feed</h3>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <textarea class="form-control" placeholder="Enter here for tweet..." rows="3"></textarea>
-          </div>
-          <a href="javascript:void(0)" class="btn btn-info btn-sm pull-right waves-effect waves-light">Tweet</a> %>
-
-
-
-
-          
