@@ -25,44 +25,48 @@
 </nav>
 
 
-<div class="card" style="width: 30rem; margin-left: 35%; margin-top: 50px; text-align: center;">
+
+<div class="card" style="width: 30rem; margin-left: auto;
+    margin-right: auto; margin-top: 30px; text-align: center;">
   <div class="card-body">
-    <h1 class="card-title">Sign Up</h1>
+    <h1 class="card-title" style="margin-bottom: 60px;">Sign Up</h1>
     <h6 class="card-subtitle mb-2 text-muted">Welcome to Twitter!</h6>
-<div><%= form_with model: @user do |form| %>
-  <div>
+<div>
+    <%= form_with model: @user do |form| %>
+    <div style="margin-top: 15px;">
     <%= form.label :name %>
     <%= form.text_field :name %>
     <% @user.errors.full_messages_for(:name).each do |message| %>
       <div><%= message %></div>
     <% end %>
-  </div>
-  <div>
+    </div>
+    <div style="margin-top: 15px;">
     <%= form.label :email %>
     <%= form.email_field :email %>
     <% @user.errors.full_messages_for(:email).each do |message| %>
       <div><%= message %></div>
     <% end %>
-  </div>
-  <div>
+    </div>
+    <div style="margin-top: 15px;">
     <%= form.label :password %>
     <%= form.password_field :password %>
     <% @user.errors.full_messages_for(:password).each do |message| %>
       <div><%= message %></div>
     <% end %>
-  </div>
-  <div>
+    </div>
+    <div style="margin-top: 15px;">
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation %>
     <% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
-      <div><%= message %></div>
+    <div><%= message %></div>
     <% end %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %></div>
+    </div>
+    <div style="margin-top: 50px; margin-bottom: 40px;" >
+    <%= form.submit "Sign Up", class: "btn btn-outline-success" %>
+    </div>
+    <% end %>
+    </div>
     <p>Already have an account?</p>
-    <a href="/login">Log In Here</a>
+    <a href="/login" class="btn btn-outline-success">Log In Here</a>
   </div>
 </div>

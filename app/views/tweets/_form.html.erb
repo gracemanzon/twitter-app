@@ -1,5 +1,11 @@
+<div class="card" style="width: 30rem; margin-left: auto;
+    margin-right: auto; margin-top: 30px; text-align: center;">
+  <div class="card-body">
+    <h1 class="card-title" style="margin-bottom: 60px;">New Tweet</h1>
+<div>
+
 <%= form_with model: tweet do |form| %>
-  <div>
+  <div style="margin-top: 15px;">
     <%= form.label :title %><br>
     <%= form.text_field :title %>
     <% tweet.errors.full_messages_for(:title).each do |message| %>
@@ -7,7 +13,7 @@
     <% end %>
   </div>
 
-  <div>
+  <div style="margin-top: 15px;">
     <%= form.label :body %><br>
     <%= form.text_area :body %><br>
     <% tweet.errors.full_messages_for(:body).each do |message| %>
@@ -15,7 +21,7 @@
     <% end %>
   </div>
 
-   <div>
+   <div style="margin-top: 15px;">
     <%= form.label :image_url %><br>
     <%= form.text_area :image_url %><br>
     <% tweet.errors.full_messages_for(:image_url).each do |message| %>
@@ -23,8 +29,12 @@
     <% end %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div style="margin-top: 50px; margin-bottom: 40px;">
+    <%= form.submit "Create Tweet", class: "btn btn-outline-success" %>
   </div>
 
   <% end %>
+</div>
+
+  </div>
+</div>
